@@ -82,6 +82,7 @@ for i in range(0, len(accel_z_deriv3)):
 # formatting for new times to be the same size as the derivative 
 times2 = times[0:len(times)-1]
 times3 = times2[0:len(times2)-1]
+times4 = times3[0:len(times3)-1]
 
 # velocities of each direction given by integrating the acceleration with
 # a cumulative trapezoid method
@@ -93,48 +94,63 @@ pos_x = integrate.cumtrapz(veloc_x, times2)
 pos_y = integrate.cumtrapz(veloc_y, times2)
 pos_z = integrate.cumtrapz(veloc_z, times2)
 
-plt.figure(1)
-plt.plot(times, accel_x)
-plt.title("Acceleration x")
-
-plt.figure(2)
-plt.plot(times2, veloc_x)
-plt.title("Velocity x")
-
-plt.figure(3)
-plt.plot(times3, pos_x)
-plt.title("Position x")
-
 # plt.figure(1)
-# plt.subplot(2, 1, 1)
 # plt.plot(times, accel_x)
-# plt.ylabel('acceleration x')
-# plt.subplot(2, 1, 2)
-# plt.plot(times2, accel_x_deriv)
-# plt.xlabel('time')
-# plt.ylabel('jerk x')
+# plt.title("Acceleration x")
 
 # plt.figure(2)
-# plt.subplot(2, 1, 1)
-# plt.plot(times, accel_y)
-# plt.ylabel('acceleration y')
-# plt.subplot(2, 1, 2)
-# plt.plot(times2, accel_y_deriv)
-# plt.xlabel('time')
-# plt.ylabel('jerk y')
+# plt.plot(times2, veloc_x)
+# plt.title("Velocity x")
 
 # plt.figure(3)
-# plt.subplot(2, 1, 1)
-# plt.plot(times, accel_z)
-# plt.ylabel('acceleration z')
-# plt.subplot(2, 1, 2)
-# plt.plot(times2, accel_z_deriv)
-# plt.xlabel('time')
-# plt.ylabel('jerk z')
+# plt.plot(times3, pos_x)
+# plt.title("Position x")
+
+plt.figure(1)
+plt.subplot(2, 1, 1)
+plt.plot(times, accel_x)
+plt.ylabel('acceleration x')
+plt.subplot(2, 1, 2)
+plt.plot(times2, accel_x_deriv)
+plt.xlabel('time')
+plt.ylabel('jerk x')
+plt.savefig('images/accel_jerk_x.png')
+
+plt.figure(2)
+plt.subplot(2, 1, 1)
+plt.plot(times, accel_y)
+plt.ylabel('acceleration y')
+plt.subplot(2, 1, 2)
+plt.plot(times2, accel_y_deriv)
+plt.xlabel('time')
+plt.ylabel('jerk y')
+plt.savefig('images/accel_jerk_y.png')
+
+plt.figure(3)
+plt.subplot(2, 1, 1)
+plt.plot(times, accel_z)
+plt.ylabel('acceleration z')
+plt.subplot(2, 1, 2)
+plt.plot(times2, accel_z_deriv)
+plt.xlabel('time')
+plt.ylabel('jerk z')
+plt.savefig('images/accel_jerk_z.png')
+
+plt.figure(4)
+plt.plot(times3, curvature)
+plt.ylabel('curvature')
+plt.xlabel('time')
+plt.savefig('images/curvature.png')
+
+plt.figure(5)
+plt.plot(times4, torsion)
+plt.ylabel('torsion')
+plt.xlabel('time')
+plt.savefig('images/torsion.png')
 
 print("Size times: " + str(len(times)))
 print("Size x: " + str(len(accel_x)))
 print("Size y: " + str(len(accel_y)))
 print("Size z: " + str(len(accel_z)))
 
-plt.show()
+# plt.show()
